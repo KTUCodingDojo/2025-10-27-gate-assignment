@@ -1,4 +1,5 @@
 using GateAssignment;
+using NodaTime;
 
 namespace GateAssignment.Tests
 {
@@ -10,7 +11,10 @@ namespace GateAssignment.Tests
         public void AssignGate_NoAvailableGates_ReturnsNull()
         {
             // Arrange
-            Flight flight = null;
+            Instant start = Instant.FromUtc(2025, 10, 27, 1, 0); 
+            Instant end = Instant.FromUtc(2025, 10, 27, 2, 0);
+            Interval timeWindow = new Interval(start, end);
+            Flight flight = new Flight("01", timeWindow, AircraftType.Narrow, OriginType.Domestic, true);
             List<Gate> gates = new List<Gate> {};
 
             // Act
